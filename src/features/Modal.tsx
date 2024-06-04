@@ -1,4 +1,4 @@
-import { Book } from "@/data";
+import { Book } from "@/functions/queryOperations";
 import React from "react";
 import { Button } from "@/components/ui/button";
 
@@ -28,11 +28,11 @@ const Modal: React.FC<ModalProps> = ({
       >
         <div className='grid grid-cols-2 text-center items-center bg-slate-800 p-3'>
           <h2 className='bg-black rounded-md m-1 p-2'>Título: </h2>
-          <h2>{currentBook.book.title}</h2>
-          <h2 className='bg-black rounded-md m-1 p-2'>Editora:</h2>
-          <p> {currentBook.book.editora}</p>
+          <h2>{currentBook.book.titulo}</h2>
+          <h2 className='bg-black rounded-md m-1 p-2'>Edição:</h2>
+          <p> {currentBook.book.edicao}</p>
           <h2 className='bg-black rounded-md m-1 p-2'>Data de Publicação: </h2>
-          <p> {currentBook.book.anoPublicacao}</p>
+          <p> {currentBook.book.dataPublicacao}</p>
           <h2 className='bg-black rounded-md m-1 p-2'>
             Quantidade Disponível:
           </h2>

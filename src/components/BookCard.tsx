@@ -1,4 +1,4 @@
-import { Book } from "@/data";
+import { Book } from "@/functions/queryOperations";
 import React from "react";
 
 interface BookWChildren extends React.PropsWithChildren<Book> {
@@ -7,9 +7,10 @@ interface BookWChildren extends React.PropsWithChildren<Book> {
 }
 
 export const BookCard: React.FC<BookWChildren> = ({
-  title,
-  editora,
-  anoPublicacao,
+  titulo,
+  edicao,
+  autor,
+  dataPublicacao,
   qntDisponivel,
   children,
   additionalCNProps,
@@ -25,11 +26,12 @@ export const BookCard: React.FC<BookWChildren> = ({
           additionalCNProps + "-700"
         }`}
       >
-        {title}
+        {titulo}
       </div>
       <ul className='p-4 list-none'>
-        <li>EDITORA: {editora}</li>
-        <li>ANO: {anoPublicacao}</li>
+        <li>Autor: {autor}</li>
+        <li>Edição: {edicao}</li>
+        <li>Ano de publicação: {dataPublicacao}</li>
         <li>EM ESTOQUE: {qntDisponivel}</li>
       </ul>
       {children}

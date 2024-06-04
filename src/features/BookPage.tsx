@@ -1,27 +1,44 @@
-import { Book, listaDeLivros } from "@/data";
-import React from "react";
+import { Book, getAllBooks } from "@/functions/queryOperations";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BookCard } from "@/components/BookCard";
 import { Button } from "@/components/ui/button";
 
-export const BookPage: React.FC<Book> = () => {
+export const BookPage: React.FC = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const [allBooks, setAllBooks] = useState<Book[]>([]);
 
-  const currentBook = listaDeLivros.filter((book) => {
-    return book.title === params.livro;
-  });
+  async function fetchBooks() {
+    try {
+      const books = await getAllBooks();
+      setAllBooks(books);
+    } catch (error) {
+      console.error("Error fetching books:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+  const numberParams = params.id ? parseInt(params.id) : "";
+  const currentBook = allBooks.find((i) => i.id === numberParams);
 
   return (
-    <BookCard
-      additionalCNProps='my-20'
-      title={currentBook[0].title}
-      editora={currentBook[0].editora}
-      anoPublicacao={currentBook[0].anoPublicacao}
-      qntDisponivel={currentBook[0].qntDisponivel}
-    >
-      <Button>Editar</Button>
-      <Button onClick={() => navigate("/")}>Voltar</Button>
-    </BookCard>
+    <>
+      {currentBook && (
+        <BookCard
+          additionalCNProps='my-20'
+          autor={currentBook.autor}
+          titulo={currentBook.titulo}
+          edicao={currentBook.edicao}
+          dataPublicacao={currentBook.dataPublicacao}
+          qntDisponivel={currentBook.qntDisponivel}
+        >
+          <Button onClick={() => navigate(`/${params.id}/edit`)}>Editar</Button>
+          <Button onClick={() => navigate("/")}>Voltar</Button>
+        </BookCard>
+      )}
+    </>
   );
 };

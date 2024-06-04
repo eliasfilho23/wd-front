@@ -1,9 +1,4 @@
-export interface Book {
-  title: string,
-  editora: string,
-  anoPublicacao: number,
-  qntDisponivel: number
-}
+import { Book } from "./functions/queryOperations";
 
 export type bookWColor = {
   book: Book,
