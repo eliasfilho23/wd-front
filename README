@@ -1,0 +1,8 @@
+1- Iniciar o servidor do back. Repo em https://github.com/eliasfilho23/wd-back
+
+2- Abrir a CLI e executar o comando npm install para instalar todas as dependências
+listadas em package.json:
+> npm i
+
+3- Executar o comando npm run dev para iniciar o servidor de desenvolvimento do front:
+> npm run dev
